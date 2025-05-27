@@ -12,7 +12,7 @@
 
 <style scoped>
     .subscriptionWrapper{
-        background-color: #FFF3E0;
+        background-color: #ff8f3c;
         padding: 80px 50px;
     }
     .subscriptionWrapper h2{

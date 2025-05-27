@@ -1,4 +1,5 @@
 <template>
+  <MenuBar />
   <div>
     <h2>登录</h2>
     <input v-model="username" placeholder="用户名" />
@@ -8,6 +9,7 @@
 </template>
 
 <script setup>
+import MenuBar from '@/components/MenuBar/MenuBar.vue';
 import { ref } from 'vue';
 import { login } from '@/api/auth';
 import { useUserStore } from '@/stores/user';

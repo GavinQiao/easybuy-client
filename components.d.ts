@@ -11,6 +11,7 @@ declare module 'vue' {
     Footer: typeof import('./src/components/Footer/Footer.vue')['default']
     Login: typeof import('./src/components/Login/Login.vue')['default']
     MenuBar: typeof import('./src/components/MenuBar/MenuBar.vue')['default']
+    ProductList: typeof import('./src/components/ProductList/ProductList.vue')['default']
     PromotionBanner: typeof import('./src/components/PromotionBanner/PromotionBanner.vue')['default']
     Recommodation: typeof import('./src/components/Recommodation/Recommodation.vue')['default']
     Register: typeof import('./src/components/Register/Register.vue')['default']

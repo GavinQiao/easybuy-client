@@ -1,4 +1,5 @@
 <template>
+  <MenuBar />
   <div>
     <h2>注册</h2>
     <input v-model="username" placeholder="用户名" />
@@ -10,6 +11,7 @@
 <script setup>
 import { ref } from 'vue';
 import { register } from '@/api/auth';
+import MenuBar from '@/components/MenuBar/MenuBar.vue';
 
 const username = ref('');
 const password = ref('');

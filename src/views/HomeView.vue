@@ -35,6 +35,7 @@ import Subscription from '@/components/Subscription/Subscription.vue';
   import { onMounted,ref } from 'vue';
   import {useRouter} from 'vue-router';
   import { useUserStore } from '@/stores/user';
+import ProductList from '@/components/ProductList/ProductList.vue';
 
   const imageLoaded = ref(false)
 

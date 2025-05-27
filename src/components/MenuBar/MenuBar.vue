@@ -5,8 +5,8 @@
         </div>
         <div class="menu">
             <ul>
-                <li>主页</li>
-                <li>商品列表</li>
+                <li><a href="/">主页</a></li>
+                <li><a href="/products">商品列表</a></li>
                 <li>联系我们</li>
             </ul>
         </div>
