@@ -1,12 +1,5 @@
 <template>
     <MenuBar />
-  <div v-if="userStore.isLoggedIn()">
-    <p>欢迎您，{{ userStore.username }}</p>
-    <button @click="exit">登出</button>
-  </div>
-  <div v-else>
-    <p>欢迎您，请登录！</p>
-  </div>
   <div class="banner-wrapper">
     <div class="banner-background" :class="{ loaded: imageLoaded }"></div>
     <div class="banner-content">
@@ -33,20 +26,8 @@ import PromotionBanner from '@/components/PromotionBanner/PromotionBanner.vue'
   import Recommodation from '@/components/Recommodation/Recommodation.vue';
 import Subscription from '@/components/Subscription/Subscription.vue';
   import { onMounted,ref } from 'vue';
-  import {useRouter} from 'vue-router';
-  import { useUserStore } from '@/stores/user';
-import ProductList from '@/components/ProductList/ProductList.vue';
 
   const imageLoaded = ref(false)
-
-  const userStore = useUserStore()
-
-  const router = useRouter()
-
-  const exit = () => {
-    userStore.clearUser()
-    router.push('login')
-  }
 
   onMounted(() => {
         const img = new Image()

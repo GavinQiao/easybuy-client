@@ -3,6 +3,7 @@ import HomeView from '@/views/HomeView.vue'
 import Login from '@/views/Login.vue'
 import Register from '@/views/Register.vue'
 import ProductPage from '@/views/ProductPage.vue'
+import Dashboard from '@/views/Dashboard.vue'
 
 const routes = [
   {
@@ -12,6 +13,10 @@ const routes = [
   {
     path: '/products',
     component: ProductPage
+  },
+  {
+    path: '/dashboard',
+    component: Dashboard
   },
   {
     path:'/login',

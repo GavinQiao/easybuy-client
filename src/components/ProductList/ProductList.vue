@@ -6,7 +6,9 @@
             <p class="original">原价：{{ product.originalPrice }}</p>
             <p>折扣价：{{ product.discountPrice }}</p>
             <div class="action-wrapper">
-                <button @click="addToCart(product.id)">添加至购物车</button>
+                <button @click="toggleFavorite(product.id)">
+                    {{ isFavorite(product.id) ? '取消收藏' : '加入收藏夹' }}
+                </button>
                 <button @click="detail()">查看详情</button>
             </div>
             
@@ -15,10 +17,13 @@
 </template>
 
 <script lang="ts" setup>
-    import axios from 'axios';
+    import { useUserStore } from '@/stores/user';
+import axios from 'axios';
     import { onMounted, ref } from 'vue';
 
     let products = ref([])
+    const favorites = ref([])
+    const userStore = useUserStore()
 
     const fetchProducts = async () => {
         try{
@@ -30,8 +35,38 @@
         }
     }
 
+    const fetchFavorite = async () => {
+        try{
+            const res = await axios.get(`http://localhost:3000/favorites`, {
+                headers: {Authorization: `Bearer ${userStore.token}`}
+            })
+            favorites.value = res.data.map(f => f.product.id)
+        }catch(error){
+            console.error(error)
+        }
+    }
+
+    function isFavorite(productId) {
+        return favorites.value.includes(productId)
+    }
+
+    async function toggleFavorite(productId) {
+        if (isFavorite(productId)) {
+            await axios.delete(`http://localhost:3000/favorites/${productId}`, {
+            headers: { Authorization: `Bearer ${userStore.token}` }
+            })
+            favorites.value = favorites.value.filter(id => id !== productId)
+        } else {
+            await axios.post(`http://localhost:3000/favorites/${productId}`, {}, {
+            headers: { Authorization: `Bearer ${userStore.token}` }
+            })
+            favorites.value.push(productId)
+        }
+    }
+
     onMounted(()=>{
         fetchProducts()
+        fetchFavorite()
     })
     
 </script>

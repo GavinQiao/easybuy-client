@@ -11,11 +11,33 @@
             </ul>
         </div>
         <div>
-            <a href="/login">登录</a>
-            <a href="/register">注册</a>
+            <div v-if="userStore.isLoggedIn()">
+                <p>欢迎，{{ userStore.username }}!</p>
+                <a href="/dashboard">我的主页</a>
+                <button @click="exit">登出</button>
+            </div>
+            <div v-else>
+                <a href="/login">登录</a>
+                <a href="/register">注册</a>
+            </div>
+            
         </div>
     </div>
 </template>
+
+<script lang="ts" setup>
+    import { useUserStore } from '@/stores/user';
+import { useRouter } from 'vue-router';
+
+    const userStore = useUserStore()
+
+    const router = useRouter()
+
+    const exit = () =>{
+        userStore.clearUser()
+        router.push('login')
+    }
+</script>
 
 <style scoped>
     .menuWrapper{
