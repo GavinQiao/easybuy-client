@@ -4,6 +4,7 @@ import Login from '@/views/Login.vue'
 import Register from '@/views/Register.vue'
 import ProductPage from '@/views/ProductPage.vue'
 import Dashboard from '@/views/Dashboard.vue'
+import ProductDetail from '@/views/ProductDetail.vue'
 
 const routes = [
   {
@@ -13,6 +14,10 @@ const routes = [
   {
     path: '/products',
     component: ProductPage
+  },
+  {
+    path: '/products/:id',
+    component: ProductDetail
   },
   {
     path: '/dashboard',

@@ -2,7 +2,7 @@
     <div class="product-list-wrapper">
         <div class="product-card" v-for="product in products" :key="product.id">
             <img :src="product.imageUrl" :alt="product.name" v-if="product.imageUrl">
-            <h3>{{ product.name }}</h3>
+            <a :href="`/products/${product.id}`"><h3>{{ product.name }}</h3></a>
             <p class="original">原价：{{ product.originalPrice }}</p>
             <p>折扣价：{{ product.discountPrice }}</p>
             <div class="action-wrapper">
