@@ -9,18 +9,23 @@
     </div>
   </div>
 
+  <CartSidebar />
+
   <Recommodation />
 
   <PromotionBanner />
 
   <Subscription />
 
+  <CartSidebar />
+
   <Footer />
   
 </template>
 
 <script setup lang="ts">
-  import Footer from '@/components/Footer/Footer.vue';
+  import CartSidebar from '@/components/CartSidebar/CartSidebar.vue';
+import Footer from '@/components/Footer/Footer.vue';
 import MenuBar from '@/components/MenuBar/MenuBar.vue';
 import PromotionBanner from '@/components/PromotionBanner/PromotionBanner.vue'
   import Recommodation from '@/components/Recommodation/Recommodation.vue';

@@ -9,7 +9,7 @@
                 <button @click="toggleFavorite(product.id)">
                     {{ isFavorite(product.id) ? '取消收藏' : '加入收藏夹' }}
                 </button>
-                <button @click="detail()">查看详情</button>
+                <button @click="purchase(product.id)">立刻购买</button>
             </div>
             
         </div>
@@ -17,13 +17,15 @@
 </template>
 
 <script lang="ts" setup>
-    import { useUserStore } from '@/stores/user';
+    import { useCartStore } from '@/stores/cart';
+import { useUserStore } from '@/stores/user';
 import axios from 'axios';
     import { onMounted, ref } from 'vue';
 
     let products = ref([])
     const favorites = ref([])
     const userStore = useUserStore()
+    const cartStore = useCartStore()
 
     const fetchProducts = async () => {
         try{
@@ -62,6 +64,11 @@ import axios from 'axios';
             })
             favorites.value.push(productId)
         }
+    }
+
+    const purchase = async (id:number) => {
+        await cartStore.addToCart(id,1)
+        alert("添加至购物车")
     }
 
     onMounted(()=>{
