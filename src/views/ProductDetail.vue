@@ -8,8 +8,8 @@
             <h2>{{product.name}}</h2>
             <p>{{ product.originalPrice }}</p>
             <p>{{ product.discountPrice }}</p>
-            <input type="number" value="2">
-            <button>购买</button>
+            <input type="number" v-model="amount">
+            <button @click="purchase()">购买</button>
         </div>
     </div>
     <div>
@@ -41,14 +41,19 @@ import Footer from '@/components/Footer/Footer.vue'
 import { onMounted, ref } from 'vue';
 import axios from 'axios';
 import { useRoute } from 'vue-router';
+import { useCartStore } from '@/stores/cart';
 
 const route = useRoute()
 
-const productId = route.params.id
+const cartStore = useCartStore()
+
+const productId = Number(route.params.id)
 
 const product = ref({})
 
 const relatedProduct = ref([])
+
+const amount = ref(0)
 
 const activeTab = ref('description')
 
@@ -67,6 +72,10 @@ const fetchProduct = async () => {
 const tabChange = (tabName:string) => {
     activeTab.value = tabName
     console.log(activeTab.value)
+}
+
+const purchase = () => {
+    cartStore.addToCart(productId,amount.value)
 }
 
 onMounted(()=>{
@@ -126,5 +135,9 @@ onMounted(()=>{
         max-width: 1200px;
         margin: 0 auto;
         margin-bottom: 60px;
+    }
+
+    .relatedProduct img{
+        width: 100%;
     }
 </style>
