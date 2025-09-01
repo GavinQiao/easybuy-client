@@ -1,8 +1,41 @@
+@font-face {
+    font-family: "Source Han Serif";
+    src: url("@/assets/fonts/SourceHanSerifSC-Regular.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Source Han Serif";
+    src: url("@/assets/fonts/SourceHanSerifSC-Light.otf") format("opentype");
+    font-weight: light;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Source Han Serif";
+    src: url("@/assets/fonts/SourceHanSerifSC-Bold.otf") format("opentype");
+    font-weight: bold;
+    font-style: normal;
+}
+
 *{
     margin: 0;
     padding: 0;
 }
 
 html,body{
+    height: 100%;
+}
+
+h1,h2,h3,h4,h5,h6,p{
+    font-family: "Source Hans Serif",serif;
+}
+
+h2{
+    font-size: 32px;
+}
+
+#app{
     height: 100%;
 }
