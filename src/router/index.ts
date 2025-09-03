@@ -14,11 +14,19 @@ const routes = [
   },
   {
     path: '/products',
+    name: 'Products',
     component: ProductPage
   },
   {
-    path: '/products/:id',
-    component: ProductDetail
+    path: '/products/:category',
+    name: 'ProductsCategory',
+    component: () => import('@/views/ProductPage.vue'),
+    props: true
+  },
+  {
+    path: '/products/details/:id',
+    component: ProductDetail,
+    props: true
   },
   {
     path: '/dashboard',
@@ -41,6 +49,17 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(),
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  const token = localStorage.getItem('token')  // 或者从 pinia 取
+
+  if (to.meta.requiresAuth && !token) {
+    // 未登录，重定向到 login
+    next({ path: '/login' })
+  } else {
+    next()
+  }
 })
 
 export default router

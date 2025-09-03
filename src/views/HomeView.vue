@@ -90,7 +90,7 @@ import Subscription from '@/components/Subscription/Subscription.vue';
         height: 600px;
         width: 100%;
         position: relative;
-        background-image: url('../assets/home-banner.webp');
+        background-image: url('../assets/images//Home/home-banner.webp');
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;

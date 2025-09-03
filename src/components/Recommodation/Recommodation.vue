@@ -24,7 +24,8 @@
 </template>
 
 <script lang="ts" setup>
-    import axios from 'axios'
+    import instance from '@/util/interceptor'
+import axios from 'axios'
     import { onMounted,ref } from 'vue'
 
     const imageLoaded = ref(false)
@@ -33,7 +34,7 @@
 
     const getBestSellers = async () => {
         try{
-            const res = await axios.get(`http://localhost:3000/products/best-seller`)
+            const res = await instance.get(`http://localhost:3000/products/best-seller`)
             bestSellers.value = res.data
             console.log(res.data)
         }catch(err){

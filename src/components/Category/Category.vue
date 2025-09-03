@@ -2,15 +2,15 @@
     <div class="cate-wrapper">
         <div class="cate-box cate1">
             <h3>甄选全球鲜果，尽享天然本味。</h3>
-            <a href="#"><span class="text">点击开启健康生活</span><span class="arrow">→</span></a>
+            <a href="http://localhost:5173/products/fruit"><span class="text">点击开启健康生活</span><span class="arrow">→</span></a>
         </div>
         <div class="cate-box cate2">
             <h3>田园臻选，鲜绿本真。</h3>
-            <a href="#"><span class="text">点击开启健康生活</span><span class="arrow">→</span></a>
+            <a href="http://localhost:5173/products/vegetable"><span class="text">点击开启健康生活</span><span class="arrow">→</span></a>
         </div>
         <div class="cate-box cate3">
             <h3>五谷精粹，滋养日常。</h3>
-            <a href="#"><span class="text">点击开启健康生活</span><span class="arrow">→</span></a>
+            <a href="http://localhost:5173/products/nut"><span class="text">点击开启健康生活</span><span class="arrow">→</span></a>
         </div>
     </div>
 </template>
@@ -40,15 +40,15 @@
     }
 
     .cate1{
-        background-image: url('@/assets/images/cate1.png');
+        background-image: url('@/assets/images/Home/cate1.png');
     }
 
     .cate2{
-        background-image: url('@/assets/images/cate2.png');
+        background-image: url('@/assets/images/Home/cate2.png');
     }
 
     .cate3{
-        background-image: url('@/assets/images/cate3.png');
+        background-image: url('@/assets/images/Home/cate3.png');
     }
 
     .cate-box:hover{
