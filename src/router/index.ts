@@ -6,6 +6,8 @@ import ProductPage from '@/views/ProductPage.vue'
 import Dashboard from '@/views/Dashboard.vue'
 import ProductDetail from '@/views/ProductDetail.vue'
 import About from '@/views/About.vue'
+import Success from '@/views/Success.vue'
+import Failed from '@/views/Failed.vue'
 
 const routes = [
   {
@@ -43,6 +45,14 @@ const routes = [
   {
     path:'/register',
     component:Register
+  },
+  {
+    path:'/success',
+    component:Success
+  },
+  {
+    path:'/cancel',
+    component:Failed
   }
 ]
 

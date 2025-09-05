@@ -8,7 +8,7 @@
                     </button>
                     <img :src="product.imageUrl" :alt="product.name" v-if="product.imageUrl">
                     <div class="product-info">
-                        <a :href="`/products/${product.id}`"><h3>{{ product.name }}</h3></a>
+                        <a :href="`/products/details/${product.id}`"><h3>{{ product.name }}</h3></a>
                         <p class="original">原价：{{ product.originalPrice }}</p>
                         <p class="discount">折扣价：{{ product.discountPrice }}</p>
                         <div>

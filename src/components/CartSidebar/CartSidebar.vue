@@ -29,6 +29,7 @@
 import axios from 'axios';
 import { useCartStore } from '@/stores/cart';
 import { loadStripe } from '@stripe/stripe-js';
+import instance from '@/util/interceptor';
 
 const cartStore = useCartStore();
 
@@ -37,16 +38,14 @@ const stripePromise = loadStripe('pk_test_51RUoPD2LMYDRfRdx3UTK0NgCHSRBIFeaNH4Ir
 const checkout = async () => {
   const token = localStorage.getItem('token');
   try {
-    const res_order = await axios.post('http://localhost:3000/orders/checkout', {}, {
+    const res_order = await instance.post('/orders/checkout', {}, {
       headers: { Authorization: `Bearer ${token}` }
     });
     alert(`订单创建成功，订单号：${res_order.data.id}`);
-    const res_stripe = await axios.post('http://localhost:3000/stripe/create-checkout-session', {}, {
+    const res_stripe = await axios.post('/stripe/create-checkout-session', {}, {
       headers: { Authorization: `Bearer ${token}` }
     });
-    const stripe = await stripePromise;
-    await stripe.redirectToCheckout({ sessionId: res_stripe.data.url.split('/').pop() });
-    cartStore.cartItems = []; // 清空前端购物车状态
+    window.location.href = res_stripe.data.url;
     cartStore.toggleSidebar();
   } catch (err) {
     alert('结账失败，请重试');

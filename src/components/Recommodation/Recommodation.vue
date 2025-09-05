@@ -34,7 +34,7 @@ import axios from 'axios'
 
     const getBestSellers = async () => {
         try{
-            const res = await instance.get(`http://localhost:3000/products/best-seller`)
+            const res = await instance.get(`/products/best-seller`)
             bestSellers.value = res.data
             console.log(res.data)
         }catch(err){

@@ -1,5 +1,8 @@
 <template>
     <MenuBar />
+    <div class="breadcrumb">
+        <a href="http://localhost:5173/">主页</a> / <a :href="`http://localhost:5173/products/${product.category}`">{{ product.category }}</a> / <a href="#">{{ product.name }}</a>
+    </div>
     <div class="productWrapper">
         <div class="imageWrapper">
             <img :src="product.imageUrl">
@@ -32,6 +35,7 @@
             <h3>{{ product.name }}</h3>
         </div>
     </div>
+    <CartSidebar />
     <Footer />
 </template>
 
@@ -42,6 +46,8 @@ import { onMounted, ref } from 'vue';
 import axios from 'axios';
 import { useRoute } from 'vue-router';
 import { useCartStore } from '@/stores/cart';
+import instance from '@/util/interceptor';
+import CartSidebar from '@/components/CartSidebar/CartSidebar.vue';
 
 const route = useRoute()
 
@@ -55,15 +61,32 @@ const relatedProduct = ref([])
 
 const amount = ref(0)
 
+const getCategory = (category:string) => {
+    switch (category){
+        case "fruit":
+            return "水果";
+            break;
+        case "vegetable":
+            return "蔬菜";
+            break;
+        case "nut":
+            return "干果"
+            break;
+        default:
+            console.log("类别错误！");
+    }
+}
+
 const activeTab = ref('description')
 
 const fetchProduct = async () => {
     try{
-        const resProduct = await axios.get(`http://localhost:3000/products/${productId}`)
-        const resRelated = await axios.get(`http://localhost:3000/products`)
+        const resProduct = await instance.get(`/products/${productId}`)
+        const resRelated = await instance.get(`/products/relevant/${productId}`)
         product.value = resProduct.data
+        let cate = product.value.category
+        product.value.category = getCategory(cate)
         relatedProduct.value = resRelated.data.filter(p => p.id != productId).slice(0,4)
-        console.log(relatedProduct.value)
     }catch (err){
         console.error(err)
     }
@@ -85,6 +108,37 @@ onMounted(()=>{
 </script>
 
 <style scoped>
+    .breadcrumb{
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .breadcrumb a{
+        font-size: 20px;
+        position: relative;
+        transition: all 0.3s ease;
+    }
+
+    .breadcrumb a:hover{
+        color:#ff8f3c;
+    }
+
+    .breadcrumb a::after{
+        content: "";
+        position: absolute;
+        height: 1px;
+        width: 0;
+        left: 0;
+        bottom: 0;
+        background-color: black;
+        transition: all 0.3s ease;
+    }
+
+    .breadcrumb a:hover::after{
+        width: 100%;
+        background-color: #ff8f3c;
+    }
+
     .productWrapper{
         display: flex;
         max-width: 1200px;
